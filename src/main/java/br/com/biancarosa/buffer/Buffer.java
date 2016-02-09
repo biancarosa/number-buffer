@@ -13,5 +13,7 @@ public class Buffer {
         this.numbers = new LinkedBlockingDeque<Integer>(max);
     }
 
-
+    public Deque<Integer> getNumbers() {
+        return numbers;
+    }
 }

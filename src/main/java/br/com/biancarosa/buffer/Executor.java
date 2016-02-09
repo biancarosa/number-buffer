@@ -21,6 +21,8 @@ public class Executor {
 
         System.out.println("Running on port " + port);
 
+        Buffer buffer = new Buffer(10);
+
         try {
             ServerSocket serverSocket = new ServerSocket(port);
             while (true) {
@@ -28,8 +30,14 @@ public class Executor {
                 BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
-                    System.out.println(inputLine);
+                    String[] input = inputLine.split(",");
+                    String name = input[0];
+                    Integer number = Integer.parseInt(input[1]);
+                    System.out.println("Received number "+number+" from producer named "+name);
+                    buffer.getNumbers().add(number);
+                    System.out.println("Added number");
                 }
+                clientSocket.close();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
