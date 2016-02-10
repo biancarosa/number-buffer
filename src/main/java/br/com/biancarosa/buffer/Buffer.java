@@ -16,14 +16,31 @@ public class Buffer {
         numbers[current++] = n;
         printBuffer();
     }
+
     public boolean hasMoreSpace() {
         return current != max;
+    }
+
+    public boolean isEmpty() {
+        return current == 0;
+    }
+
+    public int consumeNumber() {
+        int number = numbers[0];
+        //reorganize array
+        for (int i = 0; i < max-1; ++i) {
+            numbers[i] = numbers[i+1];
+        }
+        current--;
+        return number;
     }
 
     public void printBuffer() {
         for (int i = 0; i < max; ++i) {
             System.out.print(numbers[i] + " - ");
         }
-        System.out.println(" In current buffer");
+        System.out.println(" In current buffer - Current idx - "+current);
     }
+
+
 }
