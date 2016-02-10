@@ -1,19 +1,29 @@
 package br.com.biancarosa.buffer;
 
-import java.util.Deque;
-import java.util.concurrent.LinkedBlockingDeque;
 
 public class Buffer {
 
-    int max;
-    Deque<Integer> numbers;
+    private int max;
+    private int[] numbers;
+    private int current = 0;
 
     public Buffer(int max) {
         this.max = max;
-        this.numbers = new LinkedBlockingDeque<Integer>(max);
+        this.numbers = new int[max];
     }
 
-    public Deque<Integer> getNumbers() {
-        return numbers;
+    public void addNumber(int n) {
+        numbers[current++] = n;
+        printBuffer();
+    }
+    public boolean hasMoreSpace() {
+        return current != max;
+    }
+
+    public void printBuffer() {
+        for (int i = 0; i < max; ++i) {
+            System.out.print(numbers[i] + " - ");
+        }
+        System.out.println(" In current buffer");
     }
 }
