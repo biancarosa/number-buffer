@@ -14,7 +14,6 @@ public class Buffer {
 
     public void addNumber(int n) {
         numbers[current++] = n;
-        printBuffer();
     }
 
     public boolean hasMoreSpace() {
@@ -39,7 +38,6 @@ public class Buffer {
         for (int i = 0; i < max; ++i) {
             System.out.print(numbers[i] + " - ");
         }
-        System.out.println(" In current buffer - Current idx - "+current);
     }
 
 
